@@ -1,14 +1,11 @@
-# `NewProjectName`
+# STEVAL-FCU001V1
 
-Board Support Template for Stratify OS v4
-
-The `CMakeLists.txt` files have notes with `message(FATAL_ERROR ...)` that show you what parts need to be updated to port to a new board. The `C` files have `#error "..."` with notes that show you what needs to be updated. Once you have addressed the notes, delete the error messages.
-
+Board Support package for Stratify OS v4 on the STEVAL-FCU001V1 evaluation board.
 
 ## Building
 
 ```sh
-git clone https://github.com/<Your Organization>/<NewProjectName>
+git clone https://github.com/StratifyLabs/STEVAL-FCU001V1
 cd <NewProjectName>
 cmake -P bootstrap.cmake
 source profile.sh

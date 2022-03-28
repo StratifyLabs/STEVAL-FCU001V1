@@ -1,7 +1,7 @@
 {
-   "description": "Stratify OS v4 board support package template.",
-   "github": "https://github.com/StratifyLabs/boardv4",
-   "name": "BoardName",
+   "description": "Stratify OS v4 board support package for STEVAL-FCU001V1",
+   "github": "https://github.com/StratifyLabs/STEVAL-FCU001V1",
+   "name": "STEVAL-FCU001V1",
    "permissions": "public",
    "publisher": "Stratify Labs, Inc",
    "type": "os",
@@ -9,7 +9,7 @@
    "version": "0.1",
    "documentId": "",
    "timestamp": 1628724852,
-   "hardwareId": "0x00000000",
+   "hardwareId": "0x00000030",
    "team": "",
    "tagList": [
       "stm32",

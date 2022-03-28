@@ -44,14 +44,13 @@ set(LWIP_STRATIFYOS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/StratifyOS/inc
 set(STRATIFYOS_INCLUDE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/StratifyOS/include CACHE INTERNAL "Stratify OS include directory")
 set(SOS_CONFIG_PATH ${CMAKE_CURRENT_SOURCE_DIR}/config CACHE INTERNAL "StratifyOS config directory")
 
-set(BUILD_STM32H735 ON CACHE INTERNAL "ENABLE BUILDING OF H735")
+set(BUILD_STM32F401xC ON CACHE INTERNAL "ENABLE BUILDING OF F401xC")
 set(BUILD_STM32_ALL OFF CACHE INTERNAL "DONT BUILD ALL STM32 BUILDS")
 
-message(FATAL_ERROR "Choose the dependencies - then delete this line")
 sdk_add_subdirectory(StratifyOS-compiler-rt v1.1 OFF)
 sdk_add_subdirectory(StratifyOS-newlib v1.1 OFF)
-sdk_add_subdirectory(StratifyOS main ON)
-sdk_add_subdirectory(StratifyOS-mcu-stm32 v4.2 OFF)
+sdk_add_subdirectory(StratifyOS v4.2 ON)
+sdk_add_subdirectory(StratifyOS-mcu-stm32 main OFF)
 sdk_add_subdirectory(HalAPI v1.2 ON)
 sdk_add_subdirectory(SosAPI v1.3 ON)
 sdk_add_subdirectory(JsonAPI v1.3 ON)

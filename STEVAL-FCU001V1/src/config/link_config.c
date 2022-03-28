@@ -7,6 +7,8 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <stm32_types.h>
+
 #include "link_config.h"
 
 #define USB_DEVICE_FIFO_BUFFER_SIZE 64
@@ -14,7 +16,7 @@ u8 usb_device_fifo_buffer[USB_DEVICE_FIFO_BUFFER_SIZE] MCU_SYS_MEM;
 u8 usb_device_fifo_read_buffer[USB_DEVICE_FIFO_BUFFER_SIZE] MCU_SYS_MEM;
 device_fifo_state_t usb_device_fifo_state MCU_SYS_MEM;
 usb_state_t usb_device_state MCU_SYS_MEM;
-const usb_config_t usb_device_config = {.port = SOS_BOARD_USB_PORT, .attr = {}};
+const usb_config_t usb_device_config = {.port = 0, .attr = {}};
 const device_fifo_config_t usb_device_fifo_config = {
     .device = DEVFS_DEVICE("usb", mcu_usb, 0, &usb_device_config,
                            &usb_device_state, 0666, SYSFS_ROOT, S_IFCHR),
@@ -49,11 +51,10 @@ link_transport_driver_t link_transport = {
 static usbd_control_t m_usb_control;
 static link_transport_phy_t m_fd;
 
-#error "Pin assignment values MUST be updated"
 const usb_attr_t m_usb_attr = {
   .o_flags = USB_FLAG_SET_DEVICE,
-  .pin_assignment.dp = {0xff, 0xff},
-  .pin_assignment.dm = {0xff, 0xff},
+  .pin_assignment.dp = {0, 11},
+  .pin_assignment.dm = {0, 12},
   .pin_assignment.id = {0xff, 0xff},
   .pin_assignment.vbus = {0xff, 0xff},
   .freq = 0

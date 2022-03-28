@@ -22,6 +22,7 @@ set(SOURCES
 	config/mcu_config.h
 	config/os_config.c
 	config/os_config.h
+	config/stm32_config.c
 	config/usb_config.c
 	config/usb_config.h
 	config/sos_config.c

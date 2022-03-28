@@ -1,24 +1,19 @@
-//Copyright 2021 Stratify Labs, See LICENSE.md for details
-
-#include "usb_config.h"
+#include <stm32_config.h>
 
 int usb_set_attributes(const devfs_handle_t *handle, void *ctl) {
-  #error "usb_set_attributes() not implemented"
-  return 0;
+    return stm32_usb_set_attributes(handle, ctl);
 }
 
 int usb_set_action(const devfs_handle_t *handle, mcu_action_t *action) {
-  #error "usb_set_action() not implemented"
-  return 0;
+    return stm32_usb_set_action(handle, action);
 }
 
 void usb_write_endpoint(const devfs_handle_t *handle, u32 endpoint_num,
                         const void *src, u32 size) {
-  #error "usb_write_endpoint() not implemented"
+    stm32_usb_write_endpoint(handle, endpoint_num, src, size);
 }
 
 int usb_read_endpoint(const devfs_handle_t *handle, u32 endpoint_num,
                       void *dest) {
-  #error "usb_read_endpoint() not implemented"
-  return 0;
+    return stm32_usb_read_endpoint(handle, endpoint_num, dest);
 }

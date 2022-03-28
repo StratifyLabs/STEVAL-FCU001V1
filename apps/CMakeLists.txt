@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 
-project(Boardv4-Apps)
+project(${CMAKE_PROJECT_NAME}-Apps)
 
 set(BASE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -18,7 +18,6 @@ if(APPS_IS_DEMO)
 	sdk_add_subdirectory(HelloWorld main)
 	sdk_add_subdirectory(Blinky main)
 endif()
-sdk_add_subdirectory(SystemApps main)
 if(APPS_IS_TESTSUITE)
 	sdk_add_subdirectory(testsuite main)
 endif()

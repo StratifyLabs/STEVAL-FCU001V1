@@ -6,6 +6,7 @@
 #include <sos/dev/sys.h>
 #include <sos/sos.h>
 #include <sos/symbols.h>
+#include <cortexm/mpu.h>
 
 #include "cache_config.h"
 #include "clock_config.h"
@@ -23,31 +24,24 @@
 
 #if _IS_BOOT
 #include <mcu/flash.h>
-#define VECTOR_TABLE_ADDRESS __BOOT_START_ADDRESS
 #include "../boot/boot_config.h"
 #include "../boot/boot_link_config.h"
 
 #define EVENT_HANDLER boot_event_handler
 #define TRACE_EVENT NULL
 #define GET_PUBLIC_KEY NULL
-#define PUBLIC_KEY_SIZE 64
-#define PUBLIC_KEY_ADDRESSS public_key
+#define PUBLIC_KEY_SIZE 0
+#define PUBLIC_KEY_ADDRESS NULL
 #define TRACE_EVENT NULL
 
-
 #else
-#define VECTOR_TABLE_ADDRESS __KERNEL_START_ADDRESS
-
 #define EVENT_HANDLER os_event_handler
 #define TRACE_EVENT debug_trace_event
 #define GET_PUBLIC_KEY sys_get_public_key
 #define PUBLIC_KEY_SIZE 0
-#define PUBLIC_KEY_ADDRESSS NULL
+#define PUBLIC_KEY_ADDRESS NULL
 #define TRACE_EVENT debug_trace_event
-
 #endif
-
-SOS_DECLARE_SECRET_KEY_32(secret_key)
 
 const sos_config_t sos_config = {
 #if !_IS_BOOT
@@ -66,7 +60,7 @@ const sos_config_t sos_config = {
             .microseconds = clock_microseconds,
             .nanoseconds = clock_nanoseconds},
 
-  .task = {.start_stack_size = SOS_DEFAULT_START_STACK_SIZE,
+  .task = {.start_stack_size = 2048,
            .start = sos_default_thread,
            .start_args = &link_transport},
 
@@ -108,7 +102,7 @@ const sos_config_t sos_config = {
 
   .sys = {.initialize = sys_initialize,
           .bootloader_start_address = __BOOT_START_ADDRESS,
-          .memory_size = SYSTEM_MEMORY_SIZE,
+          .memory_size = CONFIG_SYSTEM_MEMORY_SIZE,
           .get_serial_number = sys_get_serial_number,
           .os_mpu_text_mask = 0,
           .flags =
@@ -140,14 +134,15 @@ const sos_config_t sos_config = {
 #if _IS_BOOT
   .boot = {.api = {.code_size = (u32)&_etext,
                    .exec = boot_invoke_bootloader,
-                   .event = boot_event_handler},
+                   .event = boot_event_handler,
+                   .hardware_id = __HARDWARE_ID},
            .program_start_address = __KERNEL_START_ADDRESS,
            .software_bootloader_request_address = 0x20004000,
            .software_bootloader_request_value = 0x55AA55AA,
            .is_bootloader_requested = boot_is_bootloader_requested,
            .flash_handle = {.port = 0},
-           .flash_erase_page = mcu_flash_erasepage,
-           .flash_write_page = mcu_flash_writepage,
+           .flash_erase_page = boot_flash_erase_page,
+           .flash_write_page = boot_flash_write_page,
            .link_transport_driver = &boot_link_usb_transport},
 #endif
   .event_handler = EVENT_HANDLER,

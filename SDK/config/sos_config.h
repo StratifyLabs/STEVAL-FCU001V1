@@ -18,8 +18,8 @@
 // Task options
 // total number of threads (system and application)
 // more tasks use require more sysmem
-#define CONFIG_TASK_TOTAL 16
-#define CONFIG_TASK_PROCESS_TIMER_COUNT 2
+#define CONFIG_TASK_TOTAL 8
+#define CONFIG_TASK_PROCESS_TIMER_COUNT 0
 #define CONFIG_TASK_DEFAULT_STACKGUARD_SIZE 128
 
 #define CONFIG_TASK_NUM_SIGNALS 32
@@ -28,12 +28,12 @@
 #define CONFIG_MALLOC_SBRK_JUMP_SIZE 128
 
 // require a valid digital signature when installing applications
-#define CONFIG_APPFS_IS_VERIFY_SIGNATURE 1
+#define CONFIG_APPFS_IS_VERIFY_SIGNATURE 0
 // require the OS to be digitally signed
-#define CONFIG_BOOT_IS_VERIFY_SIGNATURE 1
+#define CONFIG_BOOT_IS_VERIFY_SIGNATURE 0
 
 // Bootloader provides AES cryptography using a device unique secret key
-#define CONFIG_BOOT_IS_AES_CRYPTO 1
+#define CONFIG_BOOT_IS_AES_CRYPTO 0
 
 #define CONFIG_USE_STDIO 1
 

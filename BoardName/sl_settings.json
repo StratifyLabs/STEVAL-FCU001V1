@@ -1,0 +1,19 @@
+{
+   "description": "Stratify OS v4 board support package template.",
+   "github": "https://github.com/StratifyLabs/boardv4",
+   "name": "BoardName",
+   "permissions": "public",
+   "publisher": "Stratify Labs, Inc",
+   "type": "os",
+   "uid": "",
+   "version": "0.1",
+   "documentId": "",
+   "timestamp": 1628724852,
+   "hardwareId": "0x00000000",
+   "team": "",
+   "tagList": [
+      "stm32",
+      "arm",
+      "cortex-m7"
+   ]
+}

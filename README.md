@@ -16,6 +16,8 @@ ninja SDK/StratifyOS-newlib/install && ninja
 
 ## Programming the Board
 
+The board is not designed to be power with the USB cable alone. You must connect a Li-ion battery (or a 4V supply) to the battery connector. If you don't, you will notice a lot of spurious resets.
+
 These instructions use default public (non-secure) keys to sign the firmware. Use `sl --help=keys` for details on creating new keys.
 
 **Install the Bootloader**

@@ -23,16 +23,21 @@ These instructions use default public (non-secure) keys to sign the firmware. Us
 **Install the Bootloader**
 
 ```sh
-sl --prepareBootloader
 <use SWD/JTAG or other bootloader to flash the bootloader>
 ```
 
 **Install the OS**
 
-The first line will install with debugging enabled. You can connect a UART receiver to `D1` to see the output at 115200,8,1,N.
+The first line will install with debugging enabled. You can connect a UART receiver to `P7.4` to see the output at 115200,8,1,N.
 
 ```sh
-sl --installDebugOs
-sl --installOs
+sl os.install:build=debug
+sl os.install
+```
+
+**Running Hello World**
+
+```sh
+sl app.install:path=apps/HelloWorld,run,terminal
 ```
 
